@@ -1,0 +1,18 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<h3>只使用标准浏览器功能的表单</h3>
+
+<!-- 添加 ngNoForm angular就不会接收这个表单了 -->
+
+<form action="app_submit" method="get" accept-charset="utf-8" ngNoForm>
+  <div>用户名：<input type="" required pattern="[a-zA-Z0-9]+"  /></div>
+  <div>手机号：<input type="number" /></div>
+  <div>密码：<input type="password" maxlength="1" minlength="1" min="5" max="9" /></div>
+  <div>确认密码：<input type="password" /></div>
+  <button type="submit">提交</button>
+</form>
+
+<hr />
+
+<app-template-form></app-template-form>
+
+
