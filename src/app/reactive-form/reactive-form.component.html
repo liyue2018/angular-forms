@@ -1,0 +1,20 @@
+<hr />
+<h2>响应式表单</h2>
+<input type="text" name="name" [formControl]="username" />
+<form [formGroup]="formModel" (submit)="onSubmit()">
+    <div class="form-group" formGroupName="dateRange">
+        起始时间：<input type="date" name="" class="form-control" formControlName="form" />
+        结束时间：<input type="date" name="" class="form-control" formControlName="to" />
+    </div>
+    <div class="form-group">
+        <ul class="list-unstyled" formArrayName="emails">
+            <li *ngFor="let e of this.formModel.get('emails').controls; let i = index;">
+                <input type="text" name="" class="form-control" [formControlName]="i" />
+            </li>
+        </ul>
+        <button type="button" class="btn btn-block btn-lg btn-primary" (click)="addEmail()">增加Email</button>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-block btn-lg btn-primary">提交</button>
+    </div>
+</form>

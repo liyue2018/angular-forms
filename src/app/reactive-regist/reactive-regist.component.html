@@ -1,0 +1,21 @@
+<hr>
+<h3>重构响应式表单</h3>
+<form [formGroup]="formModel" (submit)="onSubmit()">
+    <div class="form-group">
+        <label><input type="text" name="username" class="form-control" placeholder="请输入用户名" formControlName="username"></label>
+    </div>
+    <div class="form-group">
+        <label><input type="number" name="mobile" class="form-control" placeholder="请输入手机号码" formControlName="mobile"></label>
+    </div>
+    <div formGroupName="passwordsGroup">
+        <div class="form-group">
+            <label><input type="password" name="password" class="form-control" placeholder="请输入密码" formControlName="password"></label>
+        </div>
+        <div class="form-group">
+            <label><input type="password" name="pconfirm" class="form-control" placeholder="请输入确认密码" formControlName="pconfirm"></label>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="sumbit" class="btn btn-block btn-primary btn-lg">提交</button>
+    </div>
+</form>
