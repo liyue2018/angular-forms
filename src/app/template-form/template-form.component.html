@@ -1,13 +1,28 @@
 <h3>模板式表单</h3>
 
-<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value)" >
-<div ngModelGroup="uerInfo">
-      <div>用户名：<input type="text" #username="ngModel" name="username" required pattern="[a-zA-Z0-9]+" ngModel  /></div>
-  <div>手机号：<input type="number" name="phonenumber" ngModel /></div>
-</div>
-    <div ngModelGroup="passwordsGroup">
-        <div>密码：<input type="password" ngModel name="password" /></div>
-        <div>确认密码：<input type="password" ngModel name="pconfirm" /></div>
+<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value,myForm.valid)" novalidate>
+  <div>用户名：<input type="text" name="username" (input)="onMobileInput(myForm)" required ngModel minlength="2" /></div>
+  <div [hidden]="mobileValid || mobileUntouched">
+      <div [hidden]="!myForm.form.hasError('required','username')">
+         用户名是必填项
+      </div>
+      <div [hidden]="!myForm.form.hasError('minlength','username')">
+         用户名最小长度是2
+      </div>
+  </div>
+  <div>手机号：<input type="number" name="mobile" ngModel mobile /></div>
+  <div [hidden]="!myForm.form.hasError('mobile', 'mobile')">
+      请输入正确的手机号码
+  </div>
+  <div ngModelGroup="passwordsGroup" equal>
+    <div>密码：<input type="password" minlength="6" ngModel name="password" /></div>
+    <div [hidden]="!myForm.form.hasError('minlength',['passwordsGroup','password'])">
+        密码最小长度是6
+    </div>
+    <div>确认密码：<input type="password" ngModel name="pconfirm" /></div>
+  </div>
+  <div [hidden]="!myForm.form.hasError('equal', 'passwordsGroup')">
+        密码输入不一致
     </div>
   <button type="submit">提交</button>
 </form>
